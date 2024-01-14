@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">eMajskeIgreApp</string>
+    <string name="seznam_dogodkov">Seznam dogodkov.</string>
+    <string name="prikazi_dogodke">Prikazi dogodke</string>
+    <string name="student">Student</string>
+    <string name="po_lji">Pošlji</string>
+    <string name="poslji">poslji</string>
+    <string name="datum_vpisa">Datum vpisa</string>
+    <string name="eventid">EventID</string>
+    <string name="vnesi_studenta">Vnesi studenta</string>
+    <string name="prikazi_prijave_v_dogodke">Prikazi prijave v dogodke</string>
+    <string name="seznam_vpisanoih_dogodkov">Seznam vpisanoih dogodkov.</string>
+</resources>
