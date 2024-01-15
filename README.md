@@ -1,32 +1,31 @@
 # eMajskeIgre App
-Gre za mobilno aplikacijo kjer se lahko študent preko API prijavi na dogodek Majskih Iger. Je mobilna verzija spletne aplikacije [eMajskeIgre](https://emajskeigre.azurewebsites.net/)
+Mobilna verzija spletne aplikacije [eMajskeIgre](https://emajskeigre.azurewebsites.net/).
 
-## Uporaba
-Uporaba aplikacije je preprosta. Z klikom na gumb "Prikazi dogodke" se nam na zaslonu prikazejo vsi dogodki. Z klikom na dogodek lahko pridobimo podrobnosti o le tem.
-Izvemo kako se bo dogodek odvijal, kdaj ter koliko točk lahko prinesem svojemu študentskemu domu, če se uvrsti prvi. V primeru, da dogodek študentu ustreza se nanj prijavi z klikom na "prijavaNaDogodek".
-Če bi si študent rad ogledal prijave na dogodke lahko to stori na začetnem zaslonu z pritiskom na gumb "Ogled Vpisov". Tam se izpišejo vsi vpisi, katere je ta študent izvedel.
+**Opis mobilne aplikacije**: Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije [eMajskeIgre](https://emajskeigre.azurewebsites.net/), ki smo jo realizirali v IDE okolju *Android Studio* s pomočjo API vmesnikov. Njena glavna funkcionalnost je prijava Študenta na posamezen dogodek na Majskih igrah.
+
+**Uporaba mobilne aplikacije**: Ko na zaslonu pritisnemo na gumb *Prikazi dogodke*, se nam prikažejo vsi objavljeni dogodki. S klikom nanj lahko pridobimo dodatne informacije o le-tem (potek, čas začetka in število točk). Prijava na dogodek je možna sklikom na gumb *prijavaNaDogodek*. Študent ima tudi možnost pregleda nad svojimi prijavami s klikom na gumb *Ogled Vpisov*.
 
 <div>
-  <p><em><b>Slika 1: Home Screen</b></em></p>
   <img src="./images/Main.jpg" alt="Local Image" width="200">
+  <p><b>Slika 1</b>: Home Screen</p>
   <br>
 </div>
 
 <div>
-  <p><em><b>Slika 2: Dogodki</b></em></p>
   <img src="./images/Dogodki.jpg" alt="Local Image" width="200">
+  <p><b>Slika 2</b>: Dogodki</p>
   <br>
 </div>
 
 <div>
-  <p><em><b>Slika 3: Podrobnosti dogodka</b></em></p>
   <img src="./images/Details.jpg" alt="Local Image" width="200">
+  <p><b>Slika 3</b>: Podrobnosti dogodka</p>
   <br>
 </div>
 
 <div>
-  <p><em><b>Slika 4: Vse prijave uporabnika</b></em></p>
   <img src="./images/Izpisane prijave.jpg" alt="Local Image" width="200">
+  <p><b>Slika 4</b>: Vse prijave uporabnika</p>
   <br>
 </div>
 
