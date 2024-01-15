@@ -109,7 +109,7 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
                     String eventID = object.getString("eventID");
                     String enrollmentDate = object.getString("enrollmentDate");
 
-                    String rowData =(enrollmentID+" "+"Dogodek z IDjem: "+eventID+"\n Datum začetka: "+enrollmentDate);
+                    String rowData =((i+1)+". "+"Dogodek z IDjem: "+eventID+"\n Datum začetka: "+enrollmentDate);
 
                     TextView rowTextView = new TextView(CheckEnrollmentsActivity.this);
                     int generatedId = View.generateViewId();
