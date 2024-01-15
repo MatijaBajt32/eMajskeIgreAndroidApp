@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout osebe;
     private String url = "https://emajskeigre.azurewebsites.net/api/v1/event";
 
-    public static final String EXTRA_MESSAGE = "com.example.universityapp.MESSAGE";
+    public static final String EXTRA_MESSAGE = "com.example.emajskeigreapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +58,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
+
+
+
     private Response.Listener<JSONArray> jsonArrayListener = new Response.Listener<JSONArray>() {
         @Override
         public void onResponse(JSONArray response){
-            ArrayList<String> data = new ArrayList<>();
 
             for (int i = 0; i < response.length(); i++){
                 try {
