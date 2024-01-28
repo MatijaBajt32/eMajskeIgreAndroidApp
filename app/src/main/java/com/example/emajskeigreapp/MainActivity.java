@@ -2,15 +2,20 @@ package com.example.emajskeigreapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -29,9 +34,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private LinearLayout osebe;
-    private String url = "https://emajskeigre.azurewebsites.net/api/v1/event";
+    private TextView live;
+    private Button btn;
+    private StudentsDormitory uporabniki;
+    private String[] events;
+    private final String url = "https://emajskeigre-is.azurewebsites.net/api/v1/event";
 
-    public static final String EXTRA_MESSAGE = "com.example.emajskeigreapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +47,45 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         osebe = (LinearLayout) findViewById(R.id.linearDogodki);
         osebe.removeAllViews();
+        //setting live user text
+        uporabniki = (StudentsDormitory) getApplication();
+        String [] uporab = uporabniki.getLiveUser();
+        live = (TextView) findViewById(R.id.trenutniUporabnik);
+        live.setText(uporab[3]+" "+uporab[4]);
+        //display events
+        btn = (Button) findViewById(R.id.button3);
+        prikaziDogodke(btn);
     }
 
+    //Logout function
+    public void odjava(View view){
+
+        uporabniki.logOut();
+        Toast.makeText(getApplicationContext(), "Odjavljanje...", Toast.LENGTH_SHORT).show();
+        //after delay return to login view
+        delay();
+    }
+    public void delay(){
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        //After 2000ms logout
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+                }
+        }, 2000);
+    }
+
+
     public  void prikaziDogodke(View view){
+        //clear linearLayout
         osebe.removeAllViews();
         if (view != null){
+            //create request for GET method from API
             JsonArrayRequest request = new JsonArrayRequest(url, jsonArrayListener, errorListener)
             {
+                //Using ApiKey to authorize Api endpoint
                 @Override
                 public Map<String,String> getHeaders() throws AuthFailureError
                 {
@@ -59,24 +99,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-    private Response.Listener<JSONArray> jsonArrayListener = new Response.Listener<JSONArray>() {
+    private final Response.Listener<JSONArray> jsonArrayListener = new Response.Listener<JSONArray>() {
         @Override
         public void onResponse(JSONArray response){
+            events = new String[response.length()];
 
+            int barva = (int) (Math.random() * 2);
             for (int i = 0; i < response.length(); i++){
                 try {
+                    //From JSON object taking data for future use
                     JSONObject object =response.getJSONObject(i);
                     String eventID = object.getString("eventID");
                     String title = object.getString("eventTitle");
                     String description = object.getString("eventDescription");
                     String eventDate = object.getString("eventDate");
+                    //Creating better format of date
+                    String datu = eventDate.split("T")[0].split("-")[2]+"-"+eventDate.split("T")[0].split("-")[1]+"-"+eventDate.split("T")[0].split("-")[0];
 
-                    String rowData =(eventID+". "+title + " " + eventDate);
+                    String rowData =(eventID+". "+title + "\n Datum: " + datu);
+                    //Setting events variable to post title of event ahead to next View
+                    events[i]=eventID+" "+title;
 
+                    //Attributes of new TextView
                     TextView rowTextView = new TextView(MainActivity.this);
                     int generatedId = View.generateViewId();
                     rowTextView.setId(generatedId);
@@ -84,8 +128,24 @@ public class MainActivity extends AppCompatActivity {
                     rowTextView.setText(rowData);
                     rowTextView.setTextSize(18);
                     rowTextView.setPadding(40,40,40,40);
-                    rowTextView.setTextColor(getResources().getColor(R.color.white));
-
+                    rowTextView.setElevation(20f);
+                    rowTextView.setTextColor(getResources().getColor(R.color.black));
+                    //Cycle of colors from green,blue to orange
+                    switch (barva){
+                        case 0:
+                            rowTextView.setBackgroundResource(R.drawable.rounded_blue);
+                            barva++;
+                            break;
+                        case 1:
+                            rowTextView.setBackgroundResource(R.drawable.rounded_green);
+                            barva++;
+                            break;
+                        case 2:
+                            rowTextView.setBackgroundResource(R.drawable.rounded_orange);
+                            barva=0;
+                            break;
+                    }
+                    //onClickListener to inspect event
                     rowTextView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -93,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                             ogledDogodkaActivity((TextView) v);
                         }
                     });
-
+                    //Sett layoutParameters fornew TextView
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -101,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     layoutParams.setMargins(10, 10, 10, 10); // Adjust the margin values as needed
 
 
-                    // Apply layout parameters
+                    //Apply layout parameters
                     rowTextView.setLayoutParams(layoutParams);
 
                     // Add the TextView to the layout
@@ -117,35 +177,52 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
-    private Response.ErrorListener errorListener = new Response.ErrorListener() {
+    private final Response.ErrorListener errorListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
             Log.d("REST error", error.getMessage());
         }
     };
 
-
+    //When Ogled prijavljenih dogodkov button is clicked
     public void checkEnrollmentActivity(View view) {
         Intent intent = new Intent(this, CheckEnrollmentsActivity.class);
+        //Add events to starting activity
+        intent.putExtra("EventName",events);
         startActivity(intent);
+        //Animation sliding activity
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    //When event TextView is clicked
     public void ogledDogodkaActivity(View view) {
         TextView clickedTextView = (TextView) view;
 
-        // Get the text from the clicked TextView
+        //Get the text from the clicked TextView
         String clickedText = clickedTextView.getText().toString();
-
+        //Get the hint from the clicked TextView
         CharSequence hint = clickedTextView.getHint();
 
-        // Create an intent to start the new activity
         Intent intent = new Intent(this, OgledDogodka.class);
 
-        // Put the text as an extra in the intent
+        //Put hint and text to intent
         intent.putExtra("EXTRA_TEXT_FROM_CLICKED_VIEW", clickedText);
         intent.putExtra("EXTRA_HINT_FROM_CLICKED_VIEW", hint != null ? hint.toString() : "");
 
-        // Start the new activity
+        //Start the new activity
         startActivity(intent);
+    }
+    //On back button pressed close current Activity
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+    //On users name and lastName clicked
+    public void checkDetails(View view){
+        Intent intent = new Intent(this, Profil.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

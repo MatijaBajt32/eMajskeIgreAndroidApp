@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -21,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,16 +41,25 @@ public class OgledDogodka extends AppCompatActivity {
     private TextView status;
     private RequestQueue requestQueue;
     private String formattedDate;
-    private String url = "https://emajskeigre.azurewebsites.net/api/v1/enrollment";
+    private String [] student;
+    private StudentsDormitory st;
+    private final String url = "https://emajskeigre-is.azurewebsites.net/api/v1/enrollment";
+    private TextView upr;
+    private String naslov;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ogled_dogodka);
+        st = (StudentsDormitory) getApplication();
+        student = st.getLiveUser();
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         status = (TextView) findViewById(R.id.status1);
+
+        upr = (TextView) findViewById(R.id.trenutniUporabnik);
+        upr.setText(student[3]+" "+student[4]);
 
         // Retrieve the data using the key
         Intent intent = getIntent();
@@ -56,14 +67,14 @@ public class OgledDogodka extends AppCompatActivity {
         String hintFromClickedView = intent.getStringExtra("EXTRA_HINT_FROM_CLICKED_VIEW");
 
         String [] podatki = textFromClickedView.split(" ");
-        String naslov = "";
+        naslov = "";
         String datum = "";
         for (int i = 1; i < podatki.length; i++) {
-            if(containsOnlyCharacters(podatki[i])){
-                naslov += " "+podatki[i];
-            }else{
-                datum = podatki[i];
+            if(podatki[i].equals("Datum:")){
+                datum = podatki[i+1];
                 break;
+            }else if(!podatki[i].equals("Datum:")){
+                naslov=naslov+" "+podatki[i];
             }
         }
 
@@ -95,17 +106,17 @@ public class OgledDogodka extends AppCompatActivity {
         return str.matches("[a-zA-ZščžŠČŽ]+");
     }
     public void VnosDogodka(View view) {
-        this.status.setText("Posting to "+ url);
+        Toast.makeText(getApplicationContext(), "Prijavljeni ste na dogodek: "+naslov, Toast.LENGTH_SHORT).show();
         try {
             JSONObject jsonBody = new JSONObject();
 
             jsonBody.put("enrollmentDate", formattedDate);
             jsonBody.put("eventID", id);
-            jsonBody.put("studentID", "1");
+            jsonBody.put("studentID", student[1]);
 
             final String mRequestBody = jsonBody.toString();
 
-            status.setText(mRequestBody);
+
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
@@ -125,20 +136,14 @@ public class OgledDogodka extends AppCompatActivity {
                 }
                 @Override
                 public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
-                        return null;
-                    }
+                    return mRequestBody == null ? null : mRequestBody.getBytes(StandardCharsets.UTF_8);
                 }
                 @Override
                 protected Response<String> parseNetworkResponse(NetworkResponse response) {
                     String responseString = "";
                     if (response != null) {
                         responseString = String.valueOf(response.statusCode);
-                        status.setText(responseString);
-                    }
+                        }
                     return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }
                 @Override
@@ -158,5 +163,12 @@ public class OgledDogodka extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+    public void MainMenu(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void nazajNaP(View view){
+        finish();
     }
 }

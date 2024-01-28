@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    tools:context=".Autentication">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/tapravaslika" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="15dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Osebni profil"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@color/white">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/nameP"
+                        android:drawableLeft="@drawable/usernameimg"
+                        android:drawablePadding="8dp"
+                        android:hint="Ime"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background"
+                        android:layout_marginTop="30dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/lastNameP"
+                        android:drawableLeft="@drawable/usernameimg"
+                        android:drawablePadding="8dp"
+                        android:hint="Priimek"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background"
+                        android:layout_marginTop="20dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/studentsIdP"
+                        android:drawableLeft="@drawable/studentsid"
+                        android:drawablePadding="8dp"
+                        android:hint="Vpisna številka"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background"
+                        android:layout_marginTop="20dp"
+                        />
+                    <EditText
+                        android:id="@+id/datumRojstvaP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="datum rojstva"
+                        android:textColor="@color/black"
+                        android:padding="8dp"
+                        android:layout_marginTop="20dp"
+                        android:drawableLeft="@drawable/borndate"
+                        android:drawablePadding="8dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/passwordP"
+                        android:drawableLeft="@drawable/password"
+                        android:drawablePadding="8dp"
+                        android:hint="Geslo"
+                        android:padding="8dp"
+                        android:inputType="textPassword"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background"
+                        android:layout_marginTop="20dp"
+                        />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/saveBtn"
+                        android:text="Nazaj"
+                        android:onClick="clickedBtn"
+                        android:textSize="18sp"
+                        android:layout_marginTop="30dp"
+                        android:backgroundTint="@color/modra"
+                        app:cornerRadius = "20dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

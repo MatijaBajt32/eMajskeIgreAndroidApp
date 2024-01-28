@@ -4,32 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckEnrollmentsActivity">
+    tools:context=".CheckEnrollmentsActivity"
+    android:background="@color/white">
 
-
-    <Button
-        android:id="@+id/buttonE"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:onClick="prikaziVpise"
-        android:text="Prikazi prijavljene dogodke"
+        android:layout_margin="4dp"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_editor_absoluteX="10dp" />
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp">
 
-    <LinearLayout
-        android:id="@+id/lyDogodki"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:padding="5dp"
+            android:background="@color/white"
+            >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/tapravaslika"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="80dp"
+                android:onClick="MainMenu"/>
+
+            <TextView
+                android:id="@+id/trenutniUporabnik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:text="UserName"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/buttonOdjava"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Odjava"
+                android:onClick="odjava"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/modra"/>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/nazajBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/modra"
+        android:text="Nazaj"
+        android:onClick="MainMenu"
+        app:layout_constraintTop_toBottomOf="@id/card"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="671dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/nazajBTN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonE"></LinearLayout>
+        android:layout_marginLeft="50dp">
+        <LinearLayout
+            android:id="@+id/lyDogodki"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
