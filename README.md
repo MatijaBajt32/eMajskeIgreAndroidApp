@@ -11,57 +11,56 @@ Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije [eMajsk
 
 **Izgled in uporaba**
 
-<div>
-  <img src="./images/HomeOrganizator.png" alt="HomeOrganizator" >
-  <b> Slika 1:</b> Home View Organizator
-  <br />
-  <br />
-</div>
-<div>
-  <img src="./images/HomeStudent.png" alt="HomeStudent" >
-  <b> Slika 2:</b> Home View Student
+<p>
+  <b>Prijava</b>
   <br>
-  <br />
-</div>
-<div>
-  <img src="./images/EventsOrganizator.png" alt="EventsOrganizator" >
-  <b> Slika 3:</b> Events View Organizator
+  Uporabnik (študent) se v aplikacijo prijavi s svojo vpisno številko in geslom. V primeru, da njegov računa ne obstaja, se lahko registrira na gumb Registrirajte se.
   <br>
-  <br />
-</div>
-<div>
-  <img src="./images/EventsStudent.png" alt="EventsStudent" >
-  <b> Slika 4</b>: Events View Student
+  <p align="center">
+  <img src="./images/Prijava.png" alt="Alt text" width="200" style= align="center"/>
+  </p>
   <br>
-  <br />
-</div>
-<div>
-  <img src="./images/EnrollmentsOrganizator.png" alt="EnrollmentsOrganizator" >
-  <b> Slika 5:</b> Enrollments View Organizator
+</p>
+<p align="left">
+  <b>Registracija</b>
   <br>
-  <br />
-</div>
-<div>
-  <img src="./images/EnrollmentsStudent.png" alt="EnrollmentsStudent" >
-  <b> Slika 6:</b> Enrollments View Student
-  <br>
-  <br />
-</div>
-
-
-
-
-
-
-
-Uporabnik (študent) se v aplikacijo prijavi s svojo vpisno številko in geslom. V primeru, da njegov računa ne obstaja, se lahko registrira na gumb Registrirajte se.
-
-
-
-
-
-
 Študent pri registraciji vnaša potrebne podatke, pri katerih se preverja sintaktična pravilnost le-teh. S klikom na gumb Registracija se ustvari nov profil in študent se lahko prijavi v aplikacijo.
+  <br>
+  <p align="center">
+  <img src="./images/Registracija.png" alt="Alt text" width="200"/>
+    </p>
+  <br>
+</p>
+<p align="left">
+  <b>Glavna stran</b>
+  <br>
+  Na prvi strani lahko vidi vse dogodke, za letošnje Majske igre 2024, na katere se lahko prijavi. Za dodatne informacije lahko enostavno klikne na posamezen dogodek. S klikom na gumb Moji dogodki pa se mu prikažejo dogodki, na katere se je prijavil.
+  <br>
+  <p align="center">
+  <img src="./images/Registracija.png" alt="Alt text" width="200"/>
+    </p>
+  <br>
+</p>
+<p align="left">
+  <b>Opis dogodka</b>
+  <br>
+  Na tem activity-u lahko študent vidi podrobnejše informacije o poteku dogodka in s klikom na gumb Prijava se lahko nanj tudi prijavi. Onemogočena je prijava na isti dogodek večkrat.
+  <br>
+  <p align="center">
+  <img src="./images/Registracija.png" alt="Alt text" width="200"/>
+    </p>
+  <br>
+</p>
+<p align="left">
+  <b>Osebne prijave na dogodke</b>
+  <br>
+  Tukaj študent vidi dogodke, na katere se je prijavil. S klikom nanj lahko prijavo izbriše.
+  <br>
+  <p align="center">
+  <img src="./images/Registracija.png" alt="Alt text" width="200"/>
+  </p>
+  <br>
+</p>
 
 
 
@@ -69,7 +68,13 @@ Uporabnik (študent) se v aplikacijo prijavi s svojo vpisno številko in geslom.
 
 
 
-Na prvi strani lahko vidi vse dogodke, za letošnje Majske igre 2024, na katere se lahko prijavi. Za dodatne informacije lahko enostavno klikne na posamezen dogodek. S klikom na gumb Moji dogodki pa se mu prikažejo dogodki, na katere se je prijavil.
+
+
+
+
+
+
+
 
  
 
@@ -78,7 +83,6 @@ Na prvi strani lahko vidi vse dogodke, za letošnje Majske igre 2024, na katere 
 
 
 
-Na tem activity-u lahko študent vidi podrobnejše informacije o poteku dogodka in s klikom na gumb Prijava se lahko nanj tudi prijavi. Onemogočena je prijava na isti dogodek večkrat.
 
 
 
@@ -87,7 +91,8 @@ Na tem activity-u lahko študent vidi podrobnejše informacije o poteku dogodka 
 
 
 
-Tukaj študent vidi dogodke, na katere se je prijavil. S klikom nanj lahko prijavo izbriše.
+
+
 
 
 
