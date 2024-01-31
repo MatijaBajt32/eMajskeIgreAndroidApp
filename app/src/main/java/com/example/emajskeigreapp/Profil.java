@@ -76,8 +76,8 @@ public class Profil extends AppCompatActivity {
         priimekS = student[4];
         vpisnaSt.setText(student[0]);
         vpisnaS = student[0];
-        datumR.setText(student[5]);
-        datumS = student[5];
+        datumR.setText(student[5].split("T")[0].split("-")[2]+"-"+student[5].split("T")[0].split("-")[1]+"-"+student[5].split("T")[0].split("-")[0]);
+        datumS = student[5].split("T")[0].split("-")[2]+"-"+student[5].split("T")[0].split("-")[1]+"-"+student[5].split("T")[0].split("-")[0];
         password.setText(student[2]);
         passwordS = student[2];
 

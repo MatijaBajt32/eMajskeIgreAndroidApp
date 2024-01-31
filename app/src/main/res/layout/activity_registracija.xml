@@ -158,7 +158,7 @@
                         android:textSize="18sp"
                         android:layout_marginTop="30dp"
                         android:backgroundTint="@color/modra"
-                        app:cornerRadius = "20dp"
+                        app:cornerRadius = "4dp"
                         android:textColor="@color/white"/>
                 </LinearLayout>
             </ScrollView>

@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="end"
+                android:gravity="center_horizontal|center_vertical"
                 android:padding="5dp"
                 android:background="@color/white"
                 >
@@ -36,15 +36,17 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="80dp"/>
 
-                <TextView
-                    android:id="@+id/trenutniUporabnik"
+                <Button
+                    android:id="@+id/ProfilBTN"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="15dp"
-                    android:text="UserName"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="@color/orange"
                     android:onClick="checkDetails"
-                    android:textColor="@color/black"/>
+                    android:text="Moj Profil"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:cornerRadius="4dp" />
 
                 <Button
                     android:id="@+id/button3"
@@ -52,7 +54,9 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/modra"
                     android:onClick="odjava"
+                    android:textSize="10dp"
                     android:text="Odjava"
+                    app:cornerRadius = "4dp"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -61,25 +65,15 @@
         </androidx.cardview.widget.CardView>
 
 
-    <Button
-        android:id="@+id/checkEnrollmentsActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:onClick="checkEnrollmentActivity"
-        android:text="Ogled prijavljenih dogodkov"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/modra"/>
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
+        android:id="@+id/scrollView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkEnrollmentsActivity">
+        app:layout_constraintTop_toBottomOf="@+id/test">
         <LinearLayout
             android:id="@+id/linearDogodki"
             android:layout_width="match_parent"
@@ -88,6 +82,20 @@
             android:padding="10dp">
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:id="@+id/checkEnrollmentsActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="checkEnrollmentActivity"
+        android:text="Moji dogodki"
+        app:layout_constraintTop_toBottomOf="@id/scrollView15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/modra"
+        app:cornerRadius="4dp" />
 
 
 

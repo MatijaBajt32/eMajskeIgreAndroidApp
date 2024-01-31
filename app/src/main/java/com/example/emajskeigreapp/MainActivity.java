@@ -2,6 +2,8 @@ package com.example.emajskeigreapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -11,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -50,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         //setting live user text
         uporabniki = (StudentsDormitory) getApplication();
         String [] uporab = uporabniki.getLiveUser();
-        live = (TextView) findViewById(R.id.trenutniUporabnik);
-        live.setText(uporab[3]+" "+uporab[4]);
+
         //display events
         btn = (Button) findViewById(R.id.button3);
         prikaziDogodke(btn);
@@ -81,6 +83,25 @@ public class MainActivity extends AppCompatActivity {
     public  void prikaziDogodke(View view){
         //clear linearLayout
         osebe.removeAllViews();
+        TextView naslov = new TextView(MainActivity.this);
+        naslov.setText("Dogodki");
+        naslov.setTextSize(36);
+        naslov.setElevation(20f);
+        naslov.setTypeface(naslov.getTypeface(), Typeface.BOLD);
+        naslov.setTextColor(getResources().getColor(R.color.black));
+        naslov.setGravity(Gravity.CENTER);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.setMargins(10, 10, 10, 40); // Adjust the margin values as needed
+
+
+        //Apply layout parameters
+        naslov.setLayoutParams(layoutParams);
+
+        osebe.addView(naslov);
         if (view != null){
             //create request for GET method from API
             JsonArrayRequest request = new JsonArrayRequest(url, jsonArrayListener, errorListener)
@@ -104,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         public void onResponse(JSONArray response){
             events = new String[response.length()];
 
-            int barva = (int) (Math.random() * 2);
             for (int i = 0; i < response.length(); i++){
                 try {
                     //From JSON object taking data for future use
@@ -116,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                     //Creating better format of date
                     String datu = eventDate.split("T")[0].split("-")[2]+"-"+eventDate.split("T")[0].split("-")[1]+"-"+eventDate.split("T")[0].split("-")[0];
 
-                    String rowData =(eventID+". "+title + "\n Datum: " + datu);
+                    String rowData =(title + "\n Datum: " + datu.replace("\n",""));
                     //Setting events variable to post title of event ahead to next View
                     events[i]=eventID+" "+title;
 
@@ -124,28 +144,14 @@ public class MainActivity extends AppCompatActivity {
                     TextView rowTextView = new TextView(MainActivity.this);
                     int generatedId = View.generateViewId();
                     rowTextView.setId(generatedId);
-                    rowTextView.setHint(description);
+                    rowTextView.setHint(description+"EventID:"+eventID);
                     rowTextView.setText(rowData);
                     rowTextView.setTextSize(18);
                     rowTextView.setPadding(40,40,40,40);
                     rowTextView.setElevation(20f);
                     rowTextView.setTextColor(getResources().getColor(R.color.black));
-                    //Cycle of colors from green,blue to orange
-                    switch (barva){
-                        case 0:
-                            rowTextView.setBackgroundResource(R.drawable.rounded_blue);
-                            barva++;
-                            break;
-                        case 1:
-                            rowTextView.setBackgroundResource(R.drawable.rounded_green);
-                            barva++;
-                            break;
-                        case 2:
-                            rowTextView.setBackgroundResource(R.drawable.rounded_orange);
-                            barva=0;
-                            break;
-                    }
-                    //onClickListener to inspect event
+                    rowTextView.setBackgroundResource(R.drawable.textview_shadow);
+
                     rowTextView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -155,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     //Sett layoutParameters fornew TextView
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                     );
                     layoutParams.setMargins(10, 10, 10, 10); // Adjust the margin values as needed

@@ -3,14 +3,19 @@ package com.example.emajskeigreapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -37,7 +42,8 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
     private LinearLayout dogodki;
     private final String url = "https://emajskeigre-is.azurewebsites.net/api/v1/enrollment";
 
-    private TextView thisUser ;
+    private Intent intentAuth = new Intent(this, Autentication.class);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +57,6 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
         btn = findViewById(R.id.buttonOdjava);
         st = (StudentsDormitory) getApplication();
         student = st.getLiveUser();
-        thisUser=(TextView)findViewById(R.id.trenutniUporabnik);
-        thisUser.setText(student[3]+" "+student[4]);
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueueDelete = Volley.newRequestQueue(getApplicationContext());
         dogodki = (LinearLayout) findViewById(R.id.lyDogodki);
@@ -64,6 +68,28 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
     //Getting enrollments from database and showing only live user's
     public  void prikaziVpise(View view){
         dogodki.removeAllViews();
+        TextView naslov = new TextView(CheckEnrollmentsActivity.this);
+        naslov.setText("Moji dogodki");
+        naslov.setTextSize(36);
+        naslov.setElevation(20f);
+        naslov.setTypeface(naslov.getTypeface(), Typeface.BOLD);
+        naslov.setTextColor(getResources().getColor(R.color.black));
+        naslov.setGravity(Gravity.CENTER);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.setMargins(10, 10, 10, 40); // Adjust the margin values as needed
+
+
+        //Apply layout parameters
+        naslov.setLayoutParams(layoutParams);
+        dogodki.addView(naslov);
+        lookDogodek(view);
+    }
+
+    public void lookDogodek(View view){
         if (view != null){
             JsonArrayRequest request = new JsonArrayRequest(url, jsonArrayListener, errorListener)
             {
@@ -120,8 +146,6 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
     private final Response.Listener<JSONArray> jsonArrayListener = new Response.Listener<JSONArray>() {
         @Override
         public void onResponse(JSONArray response){
-            int index = 1;
-            int barva = 0;
             String[] ids =new String[eventName.length];
             String[] names = new String[eventName.length];
             for (int i = 0; i < eventName.length; i++) {
@@ -152,31 +176,18 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
                                 break;
                             }
                         }
-                        String rowData =(index+". "+"Dogodek : "+name+"\n Datum začetka: "+datu+"\n Ob "+ura);
-                        index++;
+                        String rowData =(name+"\n "+datu+" ob "+ura);
+
                         TextView rowTextView = new TextView(CheckEnrollmentsActivity.this);
                         int generatedId = View.generateViewId();
                         rowTextView.setId(generatedId);
                         rowTextView.setHint(enrollmentID);
                         rowTextView.setText(rowData);
                         rowTextView.setTextSize(18);
-                        rowTextView.setPadding(20,20,20,20);
+                        rowTextView.setPadding(40,40,40,40);
 
                         rowTextView.setTextColor(getResources().getColor(R.color.black));
-                        switch (barva){
-                            case 0:
-                                rowTextView.setBackgroundResource(R.drawable.rounded_blue);
-                                barva++;
-                                break;
-                            case 1:
-                                rowTextView.setBackgroundResource(R.drawable.rounded_green);
-                                barva++;
-                                break;
-                            case 2:
-                                rowTextView.setBackgroundResource(R.drawable.rounded_orange);
-                                barva=0;
-                                break;
-                        }
+                        rowTextView.setBackgroundResource(R.drawable.textview_shadow);
 
                         rowTextView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -187,7 +198,7 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
                         });
 
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT
                         );
                         layoutParams.setMargins(10, 10, 10, 10); // Adjust the margin values as needed
@@ -206,7 +217,7 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
                 }
             }
 
-            if (dogodki.getChildCount() == 0) {
+            if (dogodki.getChildCount() == 1) {
                 TextView rowTextView = new TextView(CheckEnrollmentsActivity.this);
                 rowTextView.setText("Niste prijavljeni na noben dogodek.");
                 rowTextView.setTextSize(18);
@@ -235,5 +246,35 @@ public class CheckEnrollmentsActivity extends AppCompatActivity {
     };
     public void MainMenu(View view){
         finish();
+    }
+    public void checkDetails(View view){
+        Intent intent = new Intent(this, Profil.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+    public void odjava(View view){
+
+        st.logOut();
+        Toast.makeText(getApplicationContext(), "Odjavljanje...", Toast.LENGTH_SHORT).show();
+        //after delay return to login view
+        delay();
+    }
+    public void delay(){
+
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        //After 2000ms logout
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(intentAuth);
+            }
+        }, 2000);
     }
 }
