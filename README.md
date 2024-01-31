@@ -1,15 +1,52 @@
-eMajskeIgre – Android mobilna aplikacija
+# [eMajskeIgre](https://github.com/MatijaBajt32/eMajskeIgreAndroidApp) – Android mobilna aplikacija
+
 Miha Lazić (63210183), Matija Bajt (63210017)
 
-Opis domene
+**Opis domene**
+
 Z informacijskim sistemom eMajskeIgre želimo podpreti procese prijav na največjem študentskem dogodku Majskih igrah. V sklopu le-tega se vsako leto prirejajo tekmovanja, ki študentskim domovom prinašajo točke glede na uvrstitve njihovih študentov. Do sedaj so se študenti morali fizično prijaviti na tekmovanja, naš sistem bo pa to digitaliziral. Omogoča prijavo kot ‘študent’ ali ‘organizator’, pri čemer bo študentu na voljo pregled vseh razpisanih tekmovanj in prijavo oz. odjavo na le-te, organizator pa bo lahko dogodke dodajal, urejal, brisal in imel evidenco o številu prijavljenih študentov za posamezen študentski dom. S tem smo študentu olajšali samo prijavo na tekmovanja, organizator pa ima informacijo, ali naj tekmovanje sploh izvede. Možnost za izboljšavo je hramba točk, ki jih za neko tekmovanje prinese neki študent za neki študentski dom (s tem imamo npr pregled nad najboljšimi tekmovalci).
 
-Mobilna aplikacija eMajske
-Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije eMajskeIgre, ki smo jo realizirali v IDE okolju Android Studio. Njena glavna funkcionalnost je prijava Študenta na posamezen dogodek na Majskih igrah. Podatke črpa preko spletne aplikacije in njene baze, ki ju gostujemo na oblaku Microsoft Azure.
+**Mobilna aplikacija eMajske**
+Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije [eMajskeIgre](https://github.com/MatijaBajt32/eMajskeIgre), ki smo jo realizirali v IDE okolju Android Studio. Njena glavna funkcionalnost je **prijava Študenta na posamezen dogodek na Majskih igrah**. Podatke črpa preko spletne aplikacije in njene baze, ki ju gostujemo na oblaku Microsoft Azure.
 
-Izgled in uporaba
+**Izgled in uporaba**
 
-
+<div>
+  <img src="./images/HomeOrganizator.png" alt="HomeOrganizator" >
+  <b> Slika 1:</b> Home View Organizator
+  <br />
+  <br />
+</div>
+<div>
+  <img src="./images/HomeStudent.png" alt="HomeStudent" >
+  <b> Slika 2:</b> Home View Student
+  <br>
+  <br />
+</div>
+<div>
+  <img src="./images/EventsOrganizator.png" alt="EventsOrganizator" >
+  <b> Slika 3:</b> Events View Organizator
+  <br>
+  <br />
+</div>
+<div>
+  <img src="./images/EventsStudent.png" alt="EventsStudent" >
+  <b> Slika 4</b>: Events View Student
+  <br>
+  <br />
+</div>
+<div>
+  <img src="./images/EnrollmentsOrganizator.png" alt="EnrollmentsOrganizator" >
+  <b> Slika 5:</b> Enrollments View Organizator
+  <br>
+  <br />
+</div>
+<div>
+  <img src="./images/EnrollmentsStudent.png" alt="EnrollmentsStudent" >
+  <b> Slika 6:</b> Enrollments View Student
+  <br>
+  <br />
+</div>
 
 
 
