@@ -62,45 +62,13 @@ Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije [eMajsk
   <br>
 </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-S klikom na gumb Moj profil lahko spreminja svoje podatke.
-
-
+<p align="left">
+  <b>Moj profil</b>
+  <br>
+  S klikom na gumb Moj profil si lahko študent ogleda svoje osebne podatke in le te tudi popravi.
+  <br>
+  <p align="center">
+  <img src="./images/MojProfil.jpg" alt="Alt text" width="200"/>
+  </p>
+  <br>
+</p>
