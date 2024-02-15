@@ -37,7 +37,7 @@ Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije [eMajsk
   Na prvi strani lahko vidi vse dogodke, za letošnje Majske igre 2024, na katere se lahko prijavi. Za dodatne informacije lahko enostavno klikne na posamezen dogodek. S klikom na gumb Moji dogodki pa se mu prikažejo dogodki, na katere se je prijavil.
   <br>
   <p align="center">
-  <img src="./images/Registracija.png" alt="Alt text" width="200"/>
+  <img src="./images/Dogodki.jpg" alt="Alt text" width="200"/>
     </p>
   <br>
 </p>
@@ -47,7 +47,7 @@ Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije [eMajsk
   Na tem activity-u lahko študent vidi podrobnejše informacije o poteku dogodka in s klikom na gumb Prijava se lahko nanj tudi prijavi. Onemogočena je prijava na isti dogodek večkrat.
   <br>
   <p align="center">
-  <img src="./images/Registracija.png" alt="Alt text" width="200"/>
+  <img src="./images/OgledDogodka.jpg" alt="Alt text" width="200"/>
     </p>
   <br>
 </p>
@@ -57,7 +57,7 @@ Aplikacija predstavlja mobilno verzijo poenostavljene spletne aplikacije [eMajsk
   Tukaj študent vidi dogodke, na katere se je prijavil. S klikom nanj lahko prijavo izbriše.
   <br>
   <p align="center">
-  <img src="./images/Registracija.png" alt="Alt text" width="200"/>
+  <img src="./images/Dogodki1.jpg" alt="Alt text" width="200"/>
   </p>
   <br>
 </p>
